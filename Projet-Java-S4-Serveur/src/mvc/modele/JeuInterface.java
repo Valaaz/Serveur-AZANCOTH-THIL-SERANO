@@ -1,4 +1,4 @@
-package serveur;
+package mvc.modele;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

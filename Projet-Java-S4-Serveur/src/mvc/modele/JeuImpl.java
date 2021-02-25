@@ -1,4 +1,4 @@
-package serveur;
+package mvc.modele;
 
 //Implémentation de l'interface Hello
 import java.rmi.RemoteException;
