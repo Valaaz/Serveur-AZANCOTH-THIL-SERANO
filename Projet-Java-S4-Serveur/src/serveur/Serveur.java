@@ -18,7 +18,7 @@ public class Serveur {
 			// Naming.rebind("rmi://localhost:" + port + "/allumette", allumette);
 
 			ImpTicTacToe tictactoe = new ImpTicTacToe();
-			Naming.rebind("rmi://localhost:" + port + "/hello", tictactoe);
+			Naming.rebind("rmi://localhost:" + port + "/tictactoe", tictactoe);
 
 			System.out.println("Serveur de jeu prêt !");
 		} catch (Exception e) {
