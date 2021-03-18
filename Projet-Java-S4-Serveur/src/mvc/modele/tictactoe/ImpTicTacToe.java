@@ -45,6 +45,36 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 	}
 
 	@Override
+	public int getTourActuel(int id) throws RemoteException {
+		return listePartie.get(id).getTour();
+	}
+
+	@Override
+	public void setTourActuel(int id, int tour) throws RemoteException {
+		listePartie.get(id).setTour(tour);
+	}
+
+	@Override
+	public String getFormeActuel(int id) throws RemoteException {
+		return listePartie.get(id).getForme();
+	}
+
+	@Override
+	public void setFormeActuel(int id, String forme) throws RemoteException {
+		listePartie.get(id).setForme(forme);
+	}
+
+	@Override
+	public String[] getLabels(int id) throws RemoteException {
+		return listePartie.get(id).getTabLabel();
+	}
+
+	@Override
+	public void setLabels(int id, String[] l) throws RemoteException {
+		listePartie.get(id).setTabLabel(l);
+	}
+
+	@Override
 	public boolean verificationVictoire(int idPartie, int tour, String l1, String l2, String l3, String l4, String l5,
 			String l6, String l7, String l8, String l9) throws RemoteException {
 

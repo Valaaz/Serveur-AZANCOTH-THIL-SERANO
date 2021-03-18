@@ -4,7 +4,9 @@ public class PartieTicTacToe {
 
 	private int idPartie = 1;
 	private int nbJoueur = 0;
-	String[] tabLabel;
+	private int tour = 1;
+	String[] tabLabel = { "", "", "", "", "", "", "", "", "" };
+	String forme;
 
 	public int getIdPartie() {
 		return idPartie;
@@ -22,12 +24,28 @@ public class PartieTicTacToe {
 		this.nbJoueur = nbJoueur;
 	}
 
+	public int getTour() {
+		return tour;
+	}
+
+	public void setTour(int tour) {
+		this.tour = tour;
+	}
+
 	public String[] getTabLabel() {
 		return tabLabel;
 	}
 
 	public void setTabLabel(String[] tabLabel) {
 		this.tabLabel = tabLabel;
+	}
+
+	public String getForme() {
+		return forme;
+	}
+
+	public void setForme(String forme) {
+		this.forme = forme;
 	}
 
 }
