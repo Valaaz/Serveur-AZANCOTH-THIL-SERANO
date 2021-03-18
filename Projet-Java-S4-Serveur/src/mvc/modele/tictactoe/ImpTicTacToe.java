@@ -2,27 +2,46 @@ package mvc.modele.tictactoe;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTacToe {
 
 	int idPartie = 1;
-	String l1, l2, l3, l4, l5, l6, l8, l9;
-	HashMap<Integer, InterfaceTicTacToe> listePartie = new HashMap<Integer, InterfaceTicTacToe>();
+	HashMap<Integer, PartieTicTacToe> listePartie = new HashMap<Integer, PartieTicTacToe>();
+	ArrayList<Integer> listeJoueur = new ArrayList<Integer>();
 
 	public ImpTicTacToe() throws RemoteException {
 		super();
 	}
 
 	@Override
-	public String echo() throws RemoteException {
-		return "Bienvenue sur le serveur de jeu !!";
+	public int numPartie() throws RemoteException {
+		Set<Integer> listKeys = listePartie.keySet();
+		Iterator<Integer> iterateur = listKeys.iterator();
+		while (iterateur.hasNext()) {
+			Object key = iterateur.next();
+			if (listePartie.get(key).getNbJoueur() != 2) {
+				return (int) key;
+			}
+		}
+
+		PartieTicTacToe nouvellePartie = new PartieTicTacToe();
+		listePartie.put(idPartie, nouvellePartie);
+
+		return idPartie++;
 	}
 
 	@Override
-	public int numPartie() {
-		// listePartie.put(idPartie, null);
-		return idPartie++;
+	public int getNombreJoueur(int id) throws RemoteException {
+		return listePartie.get(id).getNbJoueur();
+	}
+
+	@Override
+	public void setNombreJoueur(int id, int joueur) throws RemoteException {
+		listePartie.get(id).setNbJoueur(joueur);
 	}
 
 	@Override
@@ -82,6 +101,13 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 			return "X";
 		else
 			return "O";
+	}
+
+	@Override
+	public String initialisation() throws RemoteException {
+		String labelVide = "";
+		return labelVide;
+
 	}
 
 }
