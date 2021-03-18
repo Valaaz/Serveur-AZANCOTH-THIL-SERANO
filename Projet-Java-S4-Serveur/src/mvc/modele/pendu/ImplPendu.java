@@ -5,30 +5,30 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Random;
 
 @SuppressWarnings("serial")
-public class ImplPendu extends UnicastRemoteObject implements InterfacePendu{
-	
-	public ImplPendu () throws RemoteException {
-		super(); 
+public class ImplPendu extends UnicastRemoteObject implements InterfacePendu {
+
+	public ImplPendu() throws RemoteException {
+		super();
 	}
-	
-	String dictionnaire[] = {"Claire", "Valentin", "Waian"}; 
-	
+
+	String dictionnaire[] = { "Claire", "Valentin", "Waian" };
+
 	@Override
 	public String generationMotAleatoire() throws RemoteException {
-		String mot=""; 
+		String mot = "";
 		Random nbAleatoire = new Random();
 		mot = dictionnaire[nbAleatoire.nextInt(dictionnaire.length)];
-		return mot; 
+		return mot;
 	}
-	
+
 	@Override
-	public char ecritLettres (char c) throws RemoteException {
-		return c; 
+	public char ecritLettres(char c) throws RemoteException {
+		return c;
 	}
-	
+
 	@Override
 	public void dessinerPendu() throws RemoteException {
-		
+
 	}
 
 }

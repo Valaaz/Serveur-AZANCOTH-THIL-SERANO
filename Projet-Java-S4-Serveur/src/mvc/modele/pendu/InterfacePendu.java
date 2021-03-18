@@ -4,8 +4,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface InterfacePendu extends Remote {
-	
-	public String generationMotAleatoire() throws RemoteException; 
-	public char ecritLettres (char c) throws RemoteException; 
-	public void dessinerPendu() throws RemoteException; 
+
+	public String generationMotAleatoire() throws RemoteException;
+
+	public char ecritLettres(char c) throws RemoteException;
+
+	public void dessinerPendu() throws RemoteException;
 }
