@@ -1,13 +1,15 @@
 package mvc.modele.pendu;
 
 import java.rmi.RemoteException;
-
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 @SuppressWarnings("serial")
 public class ImplPendu extends UnicastRemoteObject implements InterfacePendu {
+
+	HashMap<Integer, PartiePendu> listePartie = new HashMap<Integer, PartiePendu>();
 
 	public ImplPendu() throws RemoteException {
 		super();
@@ -15,65 +17,94 @@ public class ImplPendu extends UnicastRemoteObject implements InterfacePendu {
 		listeErreurs.add(0);
 	}
 
-	String dictionnaire[] = {"claire", "waian", "valentin"};
-	int nbErreurs = 0; 
+	String dictionnaire[] = { "claire", "waian", "valentin" };
+	int nbErreurs = 0;
 	int idPartie = 0;
 	ArrayList<Integer> listeErreurs;
-	
-	@Override 
-	public String affichage(char[] motCache) {
-		String motAffichage = ""; 
-		for (int i =0; i<motCache.length;i++) {
-			motAffichage += motCache[i]; 
-			motAffichage += " "; 
-		}
-		return motAffichage; 
-	}
-	
+
 	@Override
-	public String generationMotAleatoire() throws RemoteException {
+	public void setMotCache(int id, char[] mot) throws RemoteException {
+		listePartie.get(id).setMotCache(mot);
+	}
+
+	// le getMotCache se fait dans affichage
+	@Override
+	public String affichage(int id) {
+		String motAffichage = "";
+		char[] motCache = listePartie.get(id).getMotCache();
+		for (int i = 0; i < motCache.length; i++) {
+			motAffichage += motCache[i];
+			motAffichage += " ";
+		}
+		return motAffichage;
+	}
+
+	@Override
+	public void generationMotAleatoire(int id) throws RemoteException {
 		String mot = "";
 		Random nbAleatoire = new Random();
 		mot = dictionnaire[nbAleatoire.nextInt(dictionnaire.length)];
-		return mot;
+		listePartie.get(id).setMot(mot);
+		// return mot;
 	}
 
-	
 	@Override
-	public char[] ecritLettres(String mot, char lettre, char[] motCache) throws RemoteException {
-		boolean trouve = false; 
-		for (int i=0; i<mot.length(); i++) {
+	public String getMotAleatoire(int id) throws RemoteException {
+		return listePartie.get(id).getMot();
+	}
+
+	@Override
+	public void ecritLettres(int id, char lettre) throws RemoteException {
+		boolean trouve = false;
+		String mot = listePartie.get(id).getMot();
+		char[] motCache = listePartie.get(id).getMotCache();
+
+		for (int i = 0; i < mot.length(); i++) {
 			if (mot.charAt(i) == lettre) {
-				motCache[i] = mot.toUpperCase().charAt(i);  
+				System.out.println("Lettre mot : " + mot.charAt(i) + ", lettre : " + lettre);
+				motCache[i] = mot.toUpperCase().charAt(i);
 				trouve = true;
 			}
 		}
-		if (trouve == false) nbErreurs++; //listeErreurs.set(idPartie, listeErreurs.get(idPartie) + 1);
-		return motCache; 
+		/*
+		 * if (trouve == false) nbErreurs++; // listeErreurs.set(idPartie,
+		 * listeErreurs.get(idPartie) + 1); return motCache;
+		 */
+		if (trouve == false) {
+			int nbErreurs = listePartie.get(id).getNbErreurs();
+			listePartie.get(id).setNbErreurs(nbErreurs + 1);
+			System.out.println("Partie n°" + id + ", nombre erreurs : " + listePartie.get(id).getNbErreurs());
+		}
+		listePartie.get(id).setMotCache(motCache);
+
 	}
-	
-	public int dessinerPendu() throws RemoteException {
-		return nbErreurs; 
+
+	// dessinerPendu alias getNbErreurs
+	@Override
+	public int dessinerPendu(int id) throws RemoteException {
+		return listePartie.get(id).getNbErreurs();
+	}
+
+	@Override
+	public void setNombreErreurs(int id, int nb) throws RemoteException {
+		listePartie.get(id).setNbErreurs(nb);
 	}
 
 	/*
+	 * @Override public int dessinerPendu(int idPartie) throws RemoteException {
+	 * System.out.println(idPartie); System.out.println(listeErreurs.get(idPartie));
+	 * return listeErreurs.get(idPartie); }
+	 *
+	 * @Override public boolean partieTerminee (int idPartie) { return false; }
+	 */
+
 	@Override
-	public int dessinerPendu(int idPartie) throws RemoteException {
-		System.out.println(idPartie);
-		System.out.println(listeErreurs.get(idPartie));
-		return listeErreurs.get(idPartie); 
+	public int nouvellePartie() throws RemoteException {
+		idPartie++;
+		PartiePendu nouvellePartie = new PartiePendu();
+		listePartie.put(idPartie, nouvellePartie);
+
+		return idPartie;
 	}
-	
-	@Override
-	public boolean partieTerminee (int idPartie) {
-		return false; 
-	}
-	
-	@Override
-    public int nouvellePartie() {
-        idPartie++; 
-        return idPartie; 
-    }
-	*/
 
 }
