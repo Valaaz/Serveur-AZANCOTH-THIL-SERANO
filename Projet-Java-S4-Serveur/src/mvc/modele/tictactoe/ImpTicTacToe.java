@@ -78,39 +78,47 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 	public boolean verificationVictoire(int idPartie, int tour, String l1, String l2, String l3, String l4, String l5,
 			String l6, String l7, String l8, String l9) throws RemoteException {
 
-		System.out.println("Forme : " + getForme(idPartie) + ", l1 : " + l1 + ", l2 : " + l2 + ", l3 : " + l3
+		System.out.println("Forme : " + getFormeJoue(idPartie) + ", l1 : " + l1 + ", l2 : " + l2 + ", l3 : " + l3
 				+ ", l4 : " + l4 + ", l5 : " + l5 + ", l6 : " + l6 + ", l7 : " + l7 + ", l8 : " + l8 + ", l9 : " + l9);
 
-		if (l1.equals(getForme(idPartie)) && l2.equals(getForme(idPartie)) && l3.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l1.equals(getFormeJoue(idPartie)) && l2.equals(getFormeJoue(idPartie))
+				&& l3.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
-		if (l4.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l6.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l4.equals(getFormeJoue(idPartie)) && l5.equals(getFormeJoue(idPartie))
+				&& l6.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
-		if (l7.equals(getForme(idPartie)) && l8.equals(getForme(idPartie)) && l9.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l7.equals(getFormeJoue(idPartie)) && l8.equals(getFormeJoue(idPartie))
+				&& l9.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
-		if (l1.equals(getForme(idPartie)) && l4.equals(getForme(idPartie)) && l7.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l1.equals(getFormeJoue(idPartie)) && l4.equals(getFormeJoue(idPartie))
+				&& l7.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
-		if (l2.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l8.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l2.equals(getFormeJoue(idPartie)) && l5.equals(getFormeJoue(idPartie))
+				&& l8.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
-		if (l3.equals(getForme(idPartie)) && l6.equals(getForme(idPartie)) && l9.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l3.equals(getFormeJoue(idPartie)) && l6.equals(getFormeJoue(idPartie))
+				&& l9.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
-		if (l1.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l9.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l1.equals(getFormeJoue(idPartie)) && l5.equals(getFormeJoue(idPartie))
+				&& l9.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
-		if (l7.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l3.equals(getForme(idPartie))) {
-			System.out.println("Victoire des " + getForme(idPartie) + " !!");
+		if (l7.equals(getFormeJoue(idPartie)) && l5.equals(getFormeJoue(idPartie))
+				&& l3.equals(getFormeJoue(idPartie))) {
+			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
 			return true;
 		}
 		return false;
@@ -127,7 +135,8 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 		return false;
 	}
 
-	public String getForme(int id) {
+	@Override
+	public String getFormeJoue(int id) throws RemoteException {
 		int tour = listePartie.get(id).getTour() - 1;
 
 		if (tour == 1)
