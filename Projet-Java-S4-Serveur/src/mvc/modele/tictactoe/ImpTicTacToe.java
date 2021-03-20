@@ -78,9 +78,6 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 	public boolean verificationVictoire(int idPartie, int tour, String l1, String l2, String l3, String l4, String l5,
 			String l6, String l7, String l8, String l9) throws RemoteException {
 
-		System.out.println("Forme : " + getFormeJoue(idPartie) + ", l1 : " + l1 + ", l2 : " + l2 + ", l3 : " + l3
-				+ ", l4 : " + l4 + ", l5 : " + l5 + ", l6 : " + l6 + ", l7 : " + l7 + ", l8 : " + l8 + ", l9 : " + l9);
-
 		if (l1.equals(getFormeJoue(idPartie)) && l2.equals(getFormeJoue(idPartie))
 				&& l3.equals(getFormeJoue(idPartie))) {
 			System.out.println("Victoire des " + getFormeJoue(idPartie) + " !!");
@@ -150,6 +147,16 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 		String labelVide = "";
 		return labelVide;
 
+	}
+
+	@Override
+	public boolean getFinPartie(int id) throws RemoteException {
+		return listePartie.get(id).isFin();
+	}
+
+	@Override
+	public void setFin(int id, boolean fin) throws RemoteException {
+		listePartie.get(id).setFin(fin);
 	}
 
 }

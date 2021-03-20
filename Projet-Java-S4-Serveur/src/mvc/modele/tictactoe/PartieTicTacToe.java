@@ -7,6 +7,7 @@ public class PartieTicTacToe {
 	private int tour = 1;
 	String[] tabLabel = { "", "", "", "", "", "", "", "", "" };
 	String forme;
+	private boolean fin;
 
 	public int getIdPartie() {
 		return idPartie;
@@ -46,6 +47,14 @@ public class PartieTicTacToe {
 
 	public void setForme(String forme) {
 		this.forme = forme;
+	}
+
+	public boolean isFin() {
+		return fin;
+	}
+
+	public void setFin(boolean fin) {
+		this.fin = fin;
 	}
 
 }
