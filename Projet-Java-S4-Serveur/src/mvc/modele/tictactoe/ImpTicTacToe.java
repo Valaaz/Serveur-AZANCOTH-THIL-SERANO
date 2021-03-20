@@ -150,12 +150,12 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 	}
 
 	@Override
-	public boolean getFinPartie(int id) throws RemoteException {
+	public int getFinPartie(int id) throws RemoteException {
 		return listePartie.get(id).isFin();
 	}
 
 	@Override
-	public void setFin(int id, boolean fin) throws RemoteException {
+	public void setFin(int id, int fin) throws RemoteException {
 		listePartie.get(id).setFin(fin);
 	}
 
