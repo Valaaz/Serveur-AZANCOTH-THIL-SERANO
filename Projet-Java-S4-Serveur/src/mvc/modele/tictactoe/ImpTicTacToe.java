@@ -78,36 +78,39 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 	public boolean verificationVictoire(int idPartie, int tour, String l1, String l2, String l3, String l4, String l5,
 			String l6, String l7, String l8, String l9) throws RemoteException {
 
-		if (l1.equals(getForme(tour)) && l2.equals(getForme(tour)) && l3.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		System.out.println("Forme : " + getForme(idPartie) + ", l1 : " + l1 + ", l2 : " + l2 + ", l3 : " + l3
+				+ ", l4 : " + l4 + ", l5 : " + l5 + ", l6 : " + l6 + ", l7 : " + l7 + ", l8 : " + l8 + ", l9 : " + l9);
+
+		if (l1.equals(getForme(idPartie)) && l2.equals(getForme(idPartie)) && l3.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
-		if (l4.equals(getForme(tour)) && l5.equals(getForme(tour)) && l6.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		if (l4.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l6.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
-		if (l7.equals(getForme(tour)) && l8.equals(getForme(tour)) && l9.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		if (l7.equals(getForme(idPartie)) && l8.equals(getForme(idPartie)) && l9.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
-		if (l1.equals(getForme(tour)) && l4.equals(getForme(tour)) && l7.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		if (l1.equals(getForme(idPartie)) && l4.equals(getForme(idPartie)) && l7.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
-		if (l2.equals(getForme(tour)) && l5.equals(getForme(tour)) && l8.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		if (l2.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l8.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
-		if (l3.equals(getForme(tour)) && l6.equals(getForme(tour)) && l9.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		if (l3.equals(getForme(idPartie)) && l6.equals(getForme(idPartie)) && l9.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
-		if (l1.equals(getForme(tour)) && l5.equals(getForme(tour)) && l9.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		if (l1.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l9.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
-		if (l7.equals(getForme(tour)) && l5.equals(getForme(tour)) && l3.equals(getForme(tour))) {
-			System.out.println("Victoire des " + getForme(tour) + " !!");
+		if (l7.equals(getForme(idPartie)) && l5.equals(getForme(idPartie)) && l3.equals(getForme(idPartie))) {
+			System.out.println("Victoire des " + getForme(idPartie) + " !!");
 			return true;
 		}
 		return false;
@@ -124,9 +127,9 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 		return false;
 	}
 
-	public String getForme(int tour) {
-		tour--; // On décremente le tour de 1 car on l'incrémente dans la fonction poseForme()
-				// et nous voulons récupérer le tour qui a été joué
+	public String getForme(int id) {
+		int tour = listePartie.get(id).getTour() - 1;
+
 		if (tour == 1)
 			return "X";
 		else
