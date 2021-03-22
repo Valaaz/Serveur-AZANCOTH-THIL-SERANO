@@ -3,6 +3,7 @@ package serveur;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
+import mvc.modele.allumettes.ImplAllumettes;
 import mvc.modele.pendu.ImplPendu;
 import mvc.modele.tictactoe.ImpTicTacToe;
 
@@ -15,8 +16,8 @@ public class Serveur {
 			ImplPendu pendu = new ImplPendu();
 			Naming.rebind("rmi://localhost:" + port + "/pendu", pendu);
 
-			// ImpAllumettes allumette = new ImpAllumettes();
-			// Naming.rebind("rmi://localhost:" + port + "/allumette", allumette);
+			ImplAllumettes allumette = new ImplAllumettes();
+			Naming.rebind("rmi://localhost:" + port + "/allumette", allumette);
 
 			ImpTicTacToe tictactoe = new ImpTicTacToe();
 			Naming.rebind("rmi://localhost:" + port + "/tictactoe", tictactoe);
