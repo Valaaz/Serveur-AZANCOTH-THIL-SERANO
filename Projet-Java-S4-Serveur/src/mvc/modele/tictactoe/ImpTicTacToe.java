@@ -2,7 +2,6 @@ package mvc.modele.tictactoe;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -10,8 +9,9 @@ import java.util.Set;
 public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTacToe {
 
 	int idPartie = 1;
+	// HashMap avec comme clé l'id d'une partie et comme valeur une instanciation
+	// d'une partie de TicTacToe
 	HashMap<Integer, PartieTicTacToe> listePartie = new HashMap<Integer, PartieTicTacToe>();
-	ArrayList<Integer> listeJoueur = new ArrayList<Integer>();
 
 	public ImpTicTacToe() throws RemoteException {
 		super();
@@ -123,7 +123,8 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 
 	@Override
 	public boolean verificationMatchNul(int id) throws RemoteException {
-		String[] l = listePartie.get(id).getTabLabel();
+		String[] l = getLabels(id);
+
 		if (l[0] != "" && l[1] != "" && l[2] != "" && l[3] != "" && l[4] != "" && l[5] != "" && l[6] != "" && l[7] != ""
 				&& l[8] != "") {
 			System.out.println("Match nul !!");
@@ -147,7 +148,6 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 	public String initialisation() throws RemoteException {
 		String labelVide = "";
 		return labelVide;
-
 	}
 
 	@Override

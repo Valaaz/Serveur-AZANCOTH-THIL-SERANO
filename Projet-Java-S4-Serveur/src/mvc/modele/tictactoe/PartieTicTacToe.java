@@ -2,6 +2,7 @@ package mvc.modele.tictactoe;
 
 public class PartieTicTacToe {
 
+	// Initialisation des variables communes entre le serveur et le client
 	private int idPartie = 1;
 	private int nbJoueur = 0;
 	private int tour = 1;
@@ -9,6 +10,7 @@ public class PartieTicTacToe {
 	String forme;
 	private int fin = 0;
 
+	// Getters et setters de chaque variable
 	public int getIdPartie() {
 		return idPartie;
 	}
