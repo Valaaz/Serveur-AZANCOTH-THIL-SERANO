@@ -122,9 +122,10 @@ public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTac
 	}
 
 	@Override
-	public boolean verificationMatchNul(int idPartie, String l1, String l2, String l3, String l4, String l5, String l6,
-			String l7, String l8, String l9) throws RemoteException {
-		if (l1 != "" && l2 != "" && l3 != "" && l4 != "" && l5 != "" && l6 != "" && l7 != "" && l8 != "" && l9 != "") {
+	public boolean verificationMatchNul(int id) throws RemoteException {
+		String[] l = listePartie.get(id).getTabLabel();
+		if (l[0] != "" && l[1] != "" && l[2] != "" && l[3] != "" && l[4] != "" && l[5] != "" && l[6] != "" && l[7] != ""
+				&& l[8] != "") {
 			System.out.println("Match nul !!");
 			return true;
 		}
