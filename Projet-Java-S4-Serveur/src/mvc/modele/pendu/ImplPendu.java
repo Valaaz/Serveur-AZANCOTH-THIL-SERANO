@@ -45,7 +45,6 @@ public class ImplPendu extends UnicastRemoteObject implements InterfacePendu {
 		Random nbAleatoire = new Random();
 		mot = dictionnaire[nbAleatoire.nextInt(dictionnaire.length)];
 		listePartie.get(id).setMot(mot);
-		// return mot;
 	}
 
 	@Override
@@ -61,15 +60,11 @@ public class ImplPendu extends UnicastRemoteObject implements InterfacePendu {
 
 		for (int i = 0; i < mot.length(); i++) {
 			if (mot.charAt(i) == lettre) {
-				System.out.println("Lettre mot : " + mot.charAt(i) + ", lettre : " + lettre);
+				System.out.println("mot : " + mot + ", lettre : " + lettre);
 				motCache[i] = mot.toUpperCase().charAt(i);
 				trouve = true;
 			}
 		}
-		/*
-		 * if (trouve == false) nbErreurs++; // listeErreurs.set(idPartie,
-		 * listeErreurs.get(idPartie) + 1); return motCache;
-		 */
 		if (trouve == false) {
 			int nbErreurs = listePartie.get(id).getNbErreurs();
 			listePartie.get(id).setNbErreurs(nbErreurs + 1);
@@ -90,13 +85,20 @@ public class ImplPendu extends UnicastRemoteObject implements InterfacePendu {
 		listePartie.get(id).setNbErreurs(nb);
 	}
 
-	/*
-	 * @Override public int dessinerPendu(int idPartie) throws RemoteException {
-	 * System.out.println(idPartie); System.out.println(listeErreurs.get(idPartie));
-	 * return listeErreurs.get(idPartie); }
-	 *
-	 * @Override public boolean partieTerminee (int idPartie) { return false; }
-	 */
+	public boolean partieTerminee(int id) throws RemoteException {
+		boolean trouve = true; 
+		int i=0; 
+		if (listePartie.get(id).getNbErreurs()>=11)
+			trouve = true;  
+		else {
+			while ((trouve == true) && (i<listePartie.get(id).mot.length())) {
+				if (listePartie.get(id).mot.toUpperCase().charAt(i) != listePartie.get(id).motCache[i]) 
+					trouve = false; 
+				i++; 
+			}
+		}
+		return trouve; 
+	}
 
 	@Override
 	public int nouvellePartie() throws RemoteException {
