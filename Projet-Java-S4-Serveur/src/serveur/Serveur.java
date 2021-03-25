@@ -22,9 +22,9 @@ public class Serveur {
 			ImpTicTacToe tictactoe = new ImpTicTacToe();
 			Naming.rebind("rmi://localhost:" + port + "/tictactoe", tictactoe);
 
-			System.out.println("Serveur de jeu prêt !");
+			System.out.println("Serveur de jeu prÃªt !");
 		} catch (Exception e) {
-			System.out.println("Serveur de jeu échec " + e);
+			System.out.println("Serveur de jeu Ã©chec " + e);
 		}
 	}
 

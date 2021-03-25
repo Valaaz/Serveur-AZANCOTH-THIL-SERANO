@@ -9,7 +9,7 @@ import java.util.Set;
 public class ImpTicTacToe extends UnicastRemoteObject implements InterfaceTicTacToe {
 
 	int idPartie = 1;
-	// HashMap avec comme clé l'id d'une partie et comme valeur une instanciation
+	// HashMap avec comme clÃ© l'id d'une partie et comme valeur une instanciation
 	// d'une partie de TicTacToe
 	HashMap<Integer, PartieTicTacToe> listePartie = new HashMap<Integer, PartieTicTacToe>();
 
