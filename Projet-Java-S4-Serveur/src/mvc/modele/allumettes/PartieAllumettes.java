@@ -4,6 +4,7 @@ public class PartieAllumettes {
 
 	private int nbAllumettesPartie = 0;
 	private int nbAllumetteJoueur = 0;
+	private int tour = 1;
 
 	public int getNbAllumettesPartie() {
 		return nbAllumettesPartie;
@@ -19,6 +20,14 @@ public class PartieAllumettes {
 
 	public void setNbAllumetteJoueur(int nbAllumetteJoueur) {
 		this.nbAllumetteJoueur = nbAllumetteJoueur;
+	}
+
+	public int getTour() {
+		return tour;
+	}
+
+	public void setTour(int tour) {
+		this.tour = tour;
 	}
 
 }

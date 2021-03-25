@@ -11,37 +11,54 @@ public class ImplAllumettes extends UnicastRemoteObject implements InterfaceAllu
 
 	int idPartie = 0;
 
-	private int nombreAllumettes;
-
 	public ImplAllumettes() throws RemoteException {
 		super();
-		nombreAllumettes = generationAleatoireAllumettes();
+
 	}
 
 	@Override
-	public int coupIA() throws RemoteException {
-		Random coupOrdi = new Random();
-		int r = coupOrdi.nextInt();
+	public void coupIA(int id) throws RemoteException {
+		int r;
+		int nbAllumettes = getNbAllumettePartie(id);
+		if (nbAllumettes == 1) {
+			r = 1;
+		} else {
+			Random coupOrdi = new Random();
+			r = coupOrdi.nextInt(2) + 1;
+		}
 
-		return r;
+		setNbAllumettePartie(id, nbAllumettes - r);
+
 	}
 
 	@Override
-	public int generationAleatoireAllumettes() throws RemoteException {
+	public int getTour(int id) throws RemoteException {
+		return listePartie.get(id).getTour();
+	}
+
+	@Override
+	public void setTour(int id, int tour) throws RemoteException {
+		listePartie.get(id).setTour(tour);
+	}
+
+	@Override
+	public int generationAleatoireAllumettes(int id) throws RemoteException {
 
 		int nbAllumettesPartie = new Random().nextInt(12) + 7; // genere un nombre d'allumettes entre 7 et 19
 		if (nbAllumettesPartie % 2 == 0) {
 			nbAllumettesPartie++;
 
 		}
+
 		return nbAllumettesPartie;
 	}
 
 	@Override
 	public void soustraireAllumettes(int id, int nbRetirer) throws RemoteException {
-		int nbAllumette = listePartie.get(id).getNbAllumettesPartie();
-		nbAllumette -= nbRetirer;
-		listePartie.get(id).setNbAllumettesPartie(nbAllumette);
+		int nombreAllumette = listePartie.get(id).getNbAllumettesPartie();
+		nombreAllumette -= nbRetirer;
+		setNbAllumettePartie(id, nombreAllumette);
+
 	}
 
 	@Override
@@ -57,6 +74,11 @@ public class ImplAllumettes extends UnicastRemoteObject implements InterfaceAllu
 	}
 
 	@Override
+	public void setNombreAllumettesJoueur(int id, int nbAllumettesJoueur) throws RemoteException {
+		listePartie.get(id).setNbAllumetteJoueur(nbAllumettesJoueur);
+	}
+
+	@Override
 	public int getNbAllumettePartie(int id) throws RemoteException {
 
 		return listePartie.get(id).getNbAllumettesPartie();
@@ -69,6 +91,12 @@ public class ImplAllumettes extends UnicastRemoteObject implements InterfaceAllu
 		listePartie.put(idPartie, nouvellePartie);
 
 		return idPartie;
+	}
+
+	@Override
+	public void setNbAllumettePartie(int id, int nbAllumettes) throws RemoteException {
+		listePartie.get(id).setNbAllumettesPartie(nbAllumettes);
+
 	}
 
 }
