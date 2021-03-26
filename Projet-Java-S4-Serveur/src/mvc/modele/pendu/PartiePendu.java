@@ -2,11 +2,20 @@ package mvc.modele.pendu;
 
 public class PartiePendu {
 
-	String mot;
-	char[] motCache;
+	/*------------------------------*/
+	/* initialisation des variables */
+	/*------------------------------*/
+	
+	String mot;               // mot qu'on doit deviner
+	char[] motCache;          // tableau contenant les _ ou les lettres déjà trouvés
 	int nbErreurs = 0;
 	int idPartie = 1;
 
+	
+	/*---------------------------------------*/
+	/* Getters et Setters de chaque variable */
+	/*---------------------------------------*/
+	
 	public String getMot() {
 		return mot;
 	}
