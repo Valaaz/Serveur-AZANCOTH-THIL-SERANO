@@ -5,7 +5,7 @@ import java.rmi.registry.LocateRegistry;
 
 import mvc.modele.allumettes.ImplAllumettes;
 import mvc.modele.pendu.ImplPendu;
-import mvc.modele.tictactoe.ImpTicTacToe;
+import mvc.modele.tictactoe.ImplTicTacToe;
 
 public class Serveur {
 	public static void main(String[] argv) {
@@ -19,7 +19,7 @@ public class Serveur {
 			ImplAllumettes allumette = new ImplAllumettes();
 			Naming.rebind("rmi://localhost:" + port + "/allumette", allumette);
 
-			ImpTicTacToe tictactoe = new ImpTicTacToe();
+			ImplTicTacToe tictactoe = new ImplTicTacToe();
 			Naming.rebind("rmi://localhost:" + port + "/tictactoe", tictactoe);
 
 			System.out.println("Serveur de jeu prêt !");
