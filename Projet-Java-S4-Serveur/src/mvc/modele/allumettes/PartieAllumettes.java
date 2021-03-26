@@ -2,9 +2,14 @@ package mvc.modele.allumettes;
 
 public class PartieAllumettes {
 
-	private int nbAllumettesPartie = 0;
-	private int nbAllumetteJoueur = 0;
-	private int tour = 1;
+	// Initialisation des variables communes entre le serveur et le client
+	private int nbAllumettesPartie = 0; // Initialisation du nombre d'allumettes en partie à 0
+	private int nbAllumetteJoueur = 0; // Initialisation du nombre d'allumettes du joueur à 0
+	private int tour = 1; // Initialisation du nombre d'allumettes du joueur à 0
+
+	/*
+	 * génération de tous les getters et setters de nos variables présentes
+	 */
 
 	public int getNbAllumettesPartie() {
 		return nbAllumettesPartie;
