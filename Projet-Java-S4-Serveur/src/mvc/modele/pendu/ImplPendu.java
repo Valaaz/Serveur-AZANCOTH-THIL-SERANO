@@ -20,7 +20,7 @@ public class ImplPendu extends UnicastRemoteObject implements InterfacePendu {
 			"podium", "bretzel", "cumulonimbus", "exigu", "zygomatique", "acrostiche", "labyrinthe",
 			"thym", "ours", "fenouil", "automne", "polygone", "acrostiche", "polymorphe", "insonoriser",
 			"arrosoir", "fourchette", "couteau", "tartiner", "arborescence", "curseur", 
-			"historie", "pharmacie", "biscuit", "bouilloire", "grenouille", "angliscisme", "serrurerie", 
+			"historien", "pharmacie", "biscuit", "bouilloire", "grenouille", "anglicisme", "serrurerie", 
 			"syllabe", "hippocampe", "wagon", "crawl", "pyjama", "solitude", "chips", "yeux", "boxe", 
 			"saxe", "ahuri", "muffin", "escalier", "lyre", "thrombose", "embrayage", "algorithme"};
 	
