@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class ImplAllumettes extends UnicastRemoteObject implements InterfaceAllumettes {
 
 	HashMap<Integer, PartieAllumettes> listePartie = new HashMap<Integer, PartieAllumettes>();
@@ -36,7 +37,7 @@ public class ImplAllumettes extends UnicastRemoteObject implements InterfaceAllu
 		}
 
 		setNbAllumettePartie(id, nbAllumettes - r); // set du nombre d'allumettes en partie en prenant les allumettes
-													// totales et en retirant le nombre d'allumettes pris par l'IA
+		// totales et en retirant le nombre d'allumettes pris par l'IA
 	}
 
 	@Override
@@ -73,9 +74,9 @@ public class ImplAllumettes extends UnicastRemoteObject implements InterfaceAllu
 	@Override
 	public void soustraireAllumettes(int id, int nbRetirer) throws RemoteException {
 		int nombreAllumette = listePartie.get(id).getNbAllumettesPartie(); // création d'une variable récupérant le
-																			// nombre d'allumettes d'une partie
+		// nombre d'allumettes d'une partie
 		nombreAllumette -= nbRetirer; // nouvelle valeur de la variable en enlevant le nombre d'allumettes à
-										// soustraire
+		// soustraire
 		setNbAllumettePartie(id, nombreAllumette); // set du nouveau nombre d'allumettes en partie après l'opération
 
 	}
@@ -127,7 +128,7 @@ public class ImplAllumettes extends UnicastRemoteObject implements InterfaceAllu
 	public int nouvellePartie() throws RemoteException {
 		idPartie++; // +1 partie à chaque nouvelle partie
 		PartieAllumettes nouvellePartie = new PartieAllumettes(); // Utilisation de la classe PartieAllumettes pour une
-																	// nouvelle partie d'allumettes
+		// nouvelle partie d'allumettes
 		listePartie.put(idPartie, nouvellePartie);
 
 		return idPartie; // retour de la partie créée
